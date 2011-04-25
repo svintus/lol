@@ -122,13 +122,13 @@
             ((member item `(#\! #\? #\.)) (cons item (tweak-text rest t lit)))
             ((eq item #\") (tweak-text rest caps (not lit)))
              (lit (cons item (tweak-text rest nil lit)))
-            ((or caps lit) (cons char-upcase item) (tweak-text rest nil lit)))
-            (t (cons (char-downcase item) (tweak-text rest nil nil))))))
+            ((or caps lit) (cons (char-upcase item) (tweak-text rest nil lit)))
+            (t (cons (char-downcase item) (tweak-text rest nil nil)))))))
 
 
 (defun game-print (lst)
   (princ (coerce (tweak-text (coerce (string-trim "() "
-                                                  (print1-to-string lst))
+                                                  (prin1-to-string lst))
                                      'list)
                              t
                              nil)
